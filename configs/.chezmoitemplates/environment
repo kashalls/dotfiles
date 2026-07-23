@@ -1,0 +1,10 @@
+{{- /* One of: windows, wsl, linux. Prompted at init; derived for configs that predate the prompt. */ -}}
+{{- if hasKey . "environment" -}}
+{{- .environment -}}
+{{- else if eq .chezmoi.os "windows" -}}
+windows
+{{- else if and (eq .chezmoi.os "linux") (contains "microsoft" (.chezmoi.kernel.osrelease | lower)) -}}
+wsl
+{{- else -}}
+linux
+{{- end -}}

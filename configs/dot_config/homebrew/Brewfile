@@ -1,0 +1,114 @@
+tap "controlplaneio-fluxcd/tap", trusted: true
+tap "fluxcd/tap", trusted: true
+tap "go-task/tap", trusted: true
+tap "siderolabs/tap", trusted: true
+tap "utkuozdemir/pv-migrate", trusted: true
+# Simple, modern, secure file encryption
+brew "age"
+# B2 Cloud Storage Command-Line Tools
+brew "b2-tools"
+# Programmable completion for Bash 4.2+
+brew "bash-completion@2"
+# Manage your dotfiles across multiple diverse machines, securely
+brew "chezmoi"
+# CLI to install, manage & troubleshoot Kubernetes clusters running Cilium
+brew "cilium-cli"
+# Cloudflare Tunnel client (formerly Argo Tunnel)
+brew "cloudflared"
+# Container Signing
+brew "cosign"
+# Load/unload environment variables based on $PWD
+brew "direnv"
+# Tool for exploring each layer in a docker image
+brew "dive"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# GNU compiler collection
+brew "gcc"
+# GNU internationalization (i18n) and localization (l10n) library
+brew "gettext"
+# GitHub command-line tool
+brew "gh"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Task is a task runner/build tool that aims to be simpler and easier to use
+brew "go-task"
+# Kubernetes package manager
+brew "helm"
+# Deploy Kubernetes Helm Charts
+brew "helmfile"
+# Configurable static site generator
+brew "hugo"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Kubernetes CLI To Manage Your Clusters In Style!
+brew "k9s"
+# Fast and secure open-source backup
+brew "kopia"
+# Kubernetes command-line interface
+brew "kubernetes-cli"
+# Package manager for kubectl plugins
+brew "krew"
+# Colorize your kubectl output
+brew "kubecolor"
+# FAST Kubernetes manifests validator, with support for Custom Resources!
+brew "kubeconform"
+# Tool that can switch between kubectl contexts easily and create aliases
+brew "kubectx"
+# Template-free customization of Kubernetes YAML manifests
+brew "kustomize"
+# MCP server for Grafana
+brew "mcp-grafana"
+# Render Jinja2 templates directly from the command-line to stdout
+brew "minijinja-cli"
+# Collection of tools that nobody wrote when UNIX was young
+brew "moreutils"
+# Implements SNMP v1, v2c, and v3, using IPv4 and IPv6
+brew "net-snmp"
+# Manage multiple Node.js versions
+brew "nvm"
+# Execute binaries from Python packages in isolated environments
+brew "pipx"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.13"
+# Cross-shell prompt for astronauts
+brew "starship"
+# Tail multiple Kubernetes pods & their containers
+brew "stern"
+# Configuration helper for talos clusters
+brew "talhelper"
+# Terminal multiplexer
+brew "tmux"
+# Modern watch command
+brew "viddy"
+# JavaScript package manager
+brew "yarn"
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
+brew "yq"
+# Flux MCP Server
+brew "controlplaneio-fluxcd/tap/flux-operator-mcp", trusted: true
+# Flux CLI
+brew "fluxcd/tap/flux"
+# CLI for out-of-band management of Kubernetes nodes created by Talos
+brew "siderolabs/tap/talosctl"
+# Persistent volume migration plugin for Kubernetes
+brew "utkuozdemir/pv-migrate/pv-migrate", link: false
+# Persistent volume migration plugin for Kubernetes
+cask "utkuozdemir/pv-migrate/pv-migrate", trusted: true
+go "github.com/golangci/golangci-lint/v2/cmd/golangci-lint"
+go "golang.org/x/tools/gopls"
+go "github.com/grafana/mcp-grafana/cmd/mcp-grafana"
+go "github.com/nats-io/nats-top"
+go "github.com/itzg/rcon-cli"
+go "honnef.co/go/tools/cmd/staticcheck"
+flatpak "im.fluffychat.Fluffychat"
+krew "browse-pvc"
+krew "cert-manager"
+krew "cilium"
+krew "cnpg"
+krew "moco"
+krew "netshoot/netshoot"
+krew "rook-ceph"
+krew "view-secret"
+npm "corepack"
+npm "pnpm"

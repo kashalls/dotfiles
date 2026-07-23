@@ -1,0 +1,41 @@
+[user]
+    name = {{ .name }}
+    email = {{ index . "email" | default "git@svcs.ok8.sh" }}
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPZh6Rn2tQ5jbxP/TJXQTdxFymMuwSySThx/Xv6B40uv
+[gpg]
+    format = ssh
+[format]
+    signOff = true
+[core]
+    autocrlf = input
+    editor = nano
+    excludesfile = {{ .chezmoi.homeDir }}/.gitignore_global
+[commit]
+    gpgsign = true
+[merge]
+    ff = only
+[pull]
+    rebase = true
+[push]
+    autoSetupRemote = true
+[fetch]
+    prune = true
+[status]
+    submoduleSummary = false
+[tag]
+    forceSignAnnotated = true
+[init]
+    defaultBranch = main
+[url "ssh://git@github.com/"]
+    pushInsteadOf = https://github.com/
+[credential "https://github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
+{{- $environment := includeTemplate "environment" . }}
+{{- if eq $environment "wsl" -}}
+[core]
+	sshCommand = ssh.exe
+{{- end -}}

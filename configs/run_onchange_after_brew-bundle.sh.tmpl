@@ -1,0 +1,5 @@
+{{- if eq (includeTemplate "environment" .) "wsl" -}}
+#!/bin/bash
+set -euo pipefail
+brew bundle --no-upgrade --file="{{ .chezmoi.homeDir }}/Brewfile"
+{{- end -}}
