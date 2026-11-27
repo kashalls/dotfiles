@@ -1,15 +1,22 @@
 [user]
-    name = {{ .name }}
-    email = {{ index . "email" | default "git@svcs.ok8.sh" }}
+    name = {{ vars.git_name }}
+    email = {{ vars.git_email }}
     signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPZh6Rn2tQ5jbxP/TJXQTdxFymMuwSySThx/Xv6B40uv
 [gpg]
     format = ssh
+{%- if vars.machine == "wsl" %}
+[gpg "ssh"]
+    program = /mnt/c/Users/jordp/AppData/Local/Microsoft/WindowsApps/op-ssh-sign-wsl.exe
+{%- endif %}
 [format]
     signOff = true
 [core]
     autocrlf = input
     editor = nano
-    excludesfile = {{ .chezmoi.homeDir }}/.gitignore_global
+    excludesfile = ~/.gitignore_global
+{%- if vars.machine == "wsl" %}
+    sshCommand = ssh.exe
+{%- endif %}
 [commit]
     gpgsign = true
 [merge]
@@ -29,13 +36,8 @@
 [url "ssh://git@github.com/"]
     pushInsteadOf = https://github.com/
 [credential "https://github.com"]
-	helper = 
-	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
+    helper =
+    helper = !{{ system_brew_prefix }}/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
-	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
-{{- $environment := includeTemplate "environment" . }}
-{{- if eq $environment "wsl" -}}
-[core]
-	sshCommand = ssh.exe
-{{- end -}}
+    helper =
+    helper = !{{ system_brew_prefix }}/bin/gh auth git-credential

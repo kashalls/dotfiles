@@ -1,0 +1,32 @@
+min_version = "2026.11.14"
+
+[settings]
+experimental = true
+
+# `machine` is defined only in the mise.<machine>.toml overlays (selected via
+# MISE_ENV, pinned once in ~/.config/mise/miserc.toml); defining it here too
+# would override the overlay when loaded from the global config dir. Git
+# identity can be overridden locally in an untracked mise.local.toml.
+[vars]
+git_name = "Kashalls"
+git_email = "git@ok8.sh"
+
+# Sources are absolute because this file is symlinked into ~/.config/mise, and
+# relative sources would resolve from there instead of the repo.
+[dotfiles]
+"~/.gitconfig" = { source = "~/.dotfiles/home/gitconfig.tmpl", mode = "template" }
+"~/.gitignore_global" = { source = "~/.dotfiles/home/gitignore_global", mode = "symlink" }
+"~/.nanorc" = { source = "~/.dotfiles/home/nanorc", mode = "symlink" }
+"~/.curlrc" = { source = "~/.dotfiles/home/curlrc", mode = "symlink" }
+"~/.config/bat/config" = { source = "~/.dotfiles/home/config/bat/config", mode = "symlink" }
+# Rendered rather than symlinked: the shell section differs per machine.
+"~/.config/agents/AGENTS.md" = { source = "~/.dotfiles/home/config/agents/AGENTS.md.tmpl", mode = "template" }
+"~/.claude/CLAUDE.md" = { source = "~/.dotfiles/home/config/agents/AGENTS.md.tmpl", mode = "template" }
+"~/.codex/AGENTS.md" = { source = "~/.dotfiles/home/config/agents/AGENTS.md.tmpl", mode = "template" }
+"~/.claude/settings.json" = { source = "~/.dotfiles/home/claude/settings.json", mode = "symlink" }
+# Each mise.<machine>.toml overlay symlinks only itself into ~/.config/mise,
+# so hosts don't carry the other machines' overlays.
+"~/.config/mise/config.toml" = { source = "~/.dotfiles/mise.toml", mode = "symlink" }
+
+[bootstrap.repos]
+"~/.nano" = { url = "https://github.com/scopatz/nanorc.git" }

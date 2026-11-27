@@ -1,0 +1,59 @@
+# Global Agent Instructions
+
+Default instructions for AI coding agents (Claude Code, Codex, etc.).
+Project-level AGENTS.md / CLAUDE.md files take precedence over this file.
+These rules bias toward caution over speed; use judgment on trivial tasks.
+
+## Working Style
+
+- Be concise. Skip preamble like "You're absolutely right" and don't over-explain.
+- When asked a question, answer it; don't jump straight to editing files.
+- If a request is ambiguous, present the interpretations instead of picking one silently. If a simpler approach exists, say so; push back when warranted.
+- Don't state versions, API shapes, or flags from memory; verify against the release page, docs, or the code itself.
+- Only cite URLs actually fetched in the current session. Omit a citation rather than fabricate or carry one forward unverified.
+- Don't provide time estimates.
+- Never use em dashes in prose. Use a hyphen (-), semicolon (;), or colon (:) instead, whichever fits.
+- Reversible actions that follow from the request: just do them and say so. Stop and ask only for destructive or hard-to-undo actions, or a genuine change of scope.
+- After a code change, verify it by actually running the code or its tests; don't claim it works untested.
+- Comments explain non-obvious constraints only. Don't add comments that narrate what the code does and do not comment on previous or past behavior.
+- Never edit secrets or ignored files (`*.key`, `*.crt`, `.private/`, anything gitignored).
+
+## Code Discipline
+
+- Write the minimum code that solves the problem: no speculative abstractions, no unrequested configurability, no error handling for impossible cases.
+- Touch only what the request requires. Don't refactor or "improve" adjacent code; match the existing style even when you'd do it differently.
+- Remove imports, variables, and functions that your change orphaned. Leave pre-existing dead code alone; mention it instead.
+- Every changed line should trace back to the request.
+
+## Environment & Shell
+
+{% if vars.machine == "wsl" -%}
+- **Shell**: `bash` inside WSL2. Generate bash-compatible commands.
+  - Windows interop is available (`ssh.exe`, `clip.exe`, `explorer.exe`); use it only when the task genuinely needs the Windows side (this machine uses `ssh.exe` as git's sshCommand).
+  - Homebrew (Linuxbrew) is installed under `/home/linuxbrew/.linuxbrew`.
+{%- elif vars.machine == "macos" -%}
+- **Shell**: `zsh` on macOS. Generate zsh-compatible commands.
+  - Userland is BSD, not GNU: `sed -i ''`, `date`, `stat`, and `find` flags differ from Linux.
+  - Homebrew is installed under `/opt/homebrew`.
+{%- else -%}
+- **Shell**: `bash`. Generate bash-compatible commands.
+{%- endif %}
+- Dotfiles are managed with mise (repo: `~/.dotfiles`, applied with `mise dotfiles apply`). Edit dotfiles in the repo, not the rendered files in `$HOME`; symlinked targets point into the repo, but templated ones (`~/.gitconfig`, these agent instructions) must be re-rendered with `mise dotfiles apply` after editing their `.tmpl` source.
+
+## Preferred Tools
+
+The following tools are available and preferred over their traditional counterparts:
+
+- **Data**: `jq` for JSON, `yq` for YAML.
+- **Watch**: `viddy` instead of `watch`.
+- **Pod Logs**: `stern` instead of `kubectl logs`.
+- **Kubernetes**: `kubecolor` instead of `kubectl` for human-readable output; `kubectx`/`kubens` for switching context/namespace.
+- **Task Runner**: `task` (go-task) when a `Taskfile.yaml` is present; check it for existing tasks before hand-rolling commands.
+
+## Git
+
+- Never `git commit`, `git push`, or open a PR unless asked.
+- Sign off commits (`git commit -s`).
+- Use Conventional Commits: `type(scope): summary` (types: feat, fix, chore, ci, docs, refactor, perf, test, build, style, revert).
+- Do not mention Claude, Codex, or AI in commit messages, PR descriptions, or code comments. No "Generated with" trailers.
+- Prefer `--force-with-lease` over `--force` when force-pushing.

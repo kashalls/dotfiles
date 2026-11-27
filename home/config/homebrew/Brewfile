@@ -9,8 +9,8 @@ brew "age"
 brew "b2-tools"
 # Programmable completion for Bash 4.2+
 brew "bash-completion@2"
-# Manage your dotfiles across multiple diverse machines, securely
-brew "chezmoi"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
 # CLI to install, manage & troubleshoot Kubernetes clusters running Cilium
 brew "cilium-cli"
 # Cloudflare Tunnel client (formerly Argo Tunnel)
@@ -101,7 +101,9 @@ go "github.com/grafana/mcp-grafana/cmd/mcp-grafana"
 go "github.com/nats-io/nats-top"
 go "github.com/itzg/rcon-cli"
 go "honnef.co/go/tools/cmd/staticcheck"
-flatpak "im.fluffychat.Fluffychat"
+if OS.linux?
+  flatpak "im.fluffychat.Fluffychat"
+end
 krew "browse-pvc"
 krew "cert-manager"
 krew "cilium"

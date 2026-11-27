@@ -1,0 +1,29 @@
+[vars]
+machine = "linux"
+
+[dotfiles]
+"~/.config/mise/mise.linux.toml" = { source = "~/.dotfiles/mise.linux.toml", mode = "symlink" }
+"~/.config/homebrew" = { source = "~/.dotfiles/home/config/homebrew", mode = "symlink" }
+"~/.bashrc" = { source = "~/.dotfiles/home/bashrc", mode = "symlink" }
+"~/.profile" = { source = "~/.dotfiles/home/profile", mode = "symlink" }
+# Rendered rather than symlinked: the Windows interop aliases are WSL-only.
+"~/.bash_aliases" = { source = "~/.dotfiles/home/bash_aliases.tmpl", mode = "template" }
+
+# Runs after the dotfiles phase so the Brewfile symlink exists on first run.
+# brew is resolved explicitly because the linuxbrew prefix may not be on PATH
+# yet in a fresh shell.
+[bootstrap.hooks.post-dotfiles]
+run = '''
+set -eu
+BREW="$(command -v brew || true)"
+for candidate in /home/linuxbrew/.linuxbrew/bin/brew "$HOME/.linuxbrew/bin/brew"; do
+    [ -n "$BREW" ] && break
+    [ -x "$candidate" ] && BREW="$candidate"
+done
+if [ -z "$BREW" ]; then
+    echo "brew not found - skipping brew bundle" >&2
+    exit 0
+fi
+eval "$("$BREW" shellenv sh)"
+brew bundle install --no-upgrade --file="$HOME/.config/homebrew/Brewfile"
+'''

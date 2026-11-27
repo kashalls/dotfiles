@@ -1,0 +1,8 @@
+alias k=kubectl
+complete -F __start_kubectl k
+{%- if vars.machine == "wsl" %}
+
+alias ssh="ssh.exe"
+alias ssh-add='ssh-add.exe'
+alias op=op.exe
+{%- endif %}
