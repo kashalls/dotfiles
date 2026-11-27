@@ -1,6 +1,5 @@
 tap "controlplaneio-fluxcd/tap", trusted: true
 tap "fluxcd/tap", trusted: true
-tap "go-task/tap", trusted: true
 tap "siderolabs/tap", trusted: true
 tap "utkuozdemir/pv-migrate", trusted: true
 # Simple, modern, secure file encryption
@@ -31,8 +30,8 @@ brew "gettext"
 brew "gh"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
-# Task is a task runner/build tool that aims to be simpler and easier to use
-brew "go-task"
+# Tool for glamorous shell scripts
+brew "gum"
 # Kubernetes package manager
 brew "helm"
 # Deploy Kubernetes Helm Charts
