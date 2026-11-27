@@ -1,0 +1,6 @@
+# Layered on top of mise.linux.toml: select both with env = ["linux", "wsl"].
+[vars]
+machine = "wsl"
+
+[dotfiles]
+"~/.config/mise/mise.wsl.toml" = { source = "~/.dotfiles/mise.wsl.toml", mode = "symlink" }

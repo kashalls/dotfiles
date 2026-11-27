@@ -1,0 +1,77 @@
+{
+  "permissions": {
+    "additionalDirectories": [
+      "/tmp"
+    ],
+    "allow": [
+      "WebFetch(domain:discord.js.org)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:grafana.com)",
+      "Bash(gh run:*)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr list *)",
+      "Bash(gh pr diff *)",
+      "Bash(gh pr checks *)",
+      "Bash(gh repo view *)",
+      "Bash(gh release view *)",
+      "Read(//tmp/**)",
+      "mcp__flux-operator-mcp__get_kubernetes_resources",
+      "mcp__flux-operator-mcp__get_kubernetes_logs",
+      "mcp__flux-operator-mcp__get_flux_instance",
+      "mcp__flux-operator-mcp__set_kubeconfig_context",
+      "mcp__grafana__query_prometheus",
+      "mcp__grafana__list_prometheus_metric_names",
+      "mcp__grafana__list_alert_groups",
+      "mcp__grafana__list_incidents",
+      "mcp__grafana__check_datasources_health"
+    ]
+  },
+  "theme": "dark",
+  "agentPushNotifEnabled": true,
+  "skipWorkflowUsageWarning": true,
+  "tui": "fullscreen",
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": false,
+    "code-review@claude-plugins-official": true,
+    "cloudflare@cloudflare": false,
+    "claude-code-wakatime@wakatime": true,
+    "modern-web-guidance@googlechrome": false
+  },
+  "extraKnownMarketplaces": {
+    "cloudflare": {
+      "source": {
+        "source": "github",
+        "repo": "cloudflare/skills"
+      }
+    },
+    "unifi-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "sirkirby/unifi-mcp"
+      }
+    },
+    "wakatime": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/wakatime/claude-code-wakatime.git"
+      }
+    },
+    "googlechrome": {
+      "source": {
+        "source": "github",
+        "repo": "GoogleChrome/modern-web-guidance"
+      }
+    }
+  },
+  "pluginConfigs": {},
+  "switchModelsOnFlag": false,
+  "remoteControlAtStartup": true,
+  "disableClaudeAiConnectors": true
+}

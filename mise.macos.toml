@@ -1,0 +1,10 @@
+[vars]
+machine = "macos"
+
+[dotfiles]
+"~/.config/mise/mise.macos.toml" = { source = "~/.dotfiles/mise.macos.toml", mode = "symlink" }
+"~/.config/homebrew" = { source = "~/.dotfiles/home/config/homebrew", mode = "symlink" }
+
+# Runs after the dotfiles phase so the Brewfile symlink exists on first run.
+[bootstrap.hooks.post-dotfiles]
+run = "brew bundle install --no-upgrade --file=$HOME/.config/homebrew/Brewfile"
