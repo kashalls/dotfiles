@@ -5,10 +5,14 @@ tap "siderolabs/tap", trusted: true
 tap "utkuozdemir/pv-migrate", trusted: true
 # Simple, modern, secure file encryption
 brew "age"
+# Improved shell history for zsh, bash, fish and nushell
+brew "atuin"
 # B2 Cloud Storage Command-Line Tools
 brew "b2-tools"
 # Programmable completion for Bash 4.2+
 brew "bash-completion@2"
+# Preexec and precmd functions for Bash (like Zsh)
+brew "bash-preexec"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # CLI to install, manage & troubleshoot Kubernetes clusters running Cilium

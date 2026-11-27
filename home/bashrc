@@ -44,8 +44,12 @@ elif [ -n "$HOMEBREW_PREFIX" ] && [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ]; then
     [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && . "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
 fi
 
+# Loaded before starship and atuin so both hook into the same preexec chain.
+[ -n "$HOMEBREW_PREFIX" ] && [ -f "$HOMEBREW_PREFIX/etc/profile.d/bash-preexec.sh" ] && . "$HOMEBREW_PREFIX/etc/profile.d/bash-preexec.sh"
+
 command -v starship >/dev/null && eval "$(starship init bash)"
 command -v direnv >/dev/null && eval "$(direnv hook bash)"
+command -v atuin >/dev/null && eval "$(atuin init bash)"
 command -v talosctl >/dev/null && source <(talosctl completion bash)
 command -v kubectl >/dev/null && source <(kubectl completion bash)
 

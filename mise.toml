@@ -19,6 +19,7 @@ git_email = "git@ok8.sh"
 "~/.nanorc" = { source = "~/.dotfiles/home/nanorc", mode = "symlink" }
 "~/.curlrc" = { source = "~/.dotfiles/home/curlrc", mode = "symlink" }
 "~/.config/bat/config" = { source = "~/.dotfiles/home/config/bat/config", mode = "symlink" }
+"~/.atuin/config.toml" = { source = "~/.dotfiles/home/config/atuin/config.toml", mode = "symlink" }
 # Rendered rather than symlinked: the shell section differs per machine.
 "~/.config/agents/AGENTS.md" = { source = "~/.dotfiles/home/config/agents/AGENTS.md.tmpl", mode = "template" }
 "~/.claude/CLAUDE.md" = { source = "~/.dotfiles/home/config/agents/AGENTS.md.tmpl", mode = "template" }
